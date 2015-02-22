@@ -2,6 +2,36 @@
 ## functions do
 
 ## Write a short comment describing this function
+
+## These functions are to be used together
+## to cache the inverted matrix of a matrix
+## so that it doesn't need to be solved a second time.
+##
+
+## SAMPLE CALL and output of simple invertable matrix
+##
+## > x
+## [,1] [,2]
+## [1,]    1    1
+## [2,]    2    3
+## > rm(z)
+## > x <- matrix(c(1,2,1,3), 2,2) ##Define a matrix
+## > z <- makeCacheMatrix(x) # Call makeCacheMatrix with the Matrix
+## > source('C:/Users/Alexander/Dropbox/Rdev/a2/cachematrix.R')
+## > cacheSolve(z)
+## [,1] [,2]
+## [1,]    3   -1
+## [2,]   -2    1
+## > cacheSolve(z)
+## getting cached data
+## [,1] [,2]
+## [1,]    3   -1
+## [2,]   -2    1
+## 
+## End Sample Call and Output
+ 
+## 
+## makeCacheMatrix
 ## This function has several internal functions
 ## That will be called by a later funtion
 ## so that potentially large matrices that need

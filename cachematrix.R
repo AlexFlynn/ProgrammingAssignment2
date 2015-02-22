@@ -2,7 +2,10 @@
 ## functions do
 
 ## Write a short comment describing this function
-
+## This function has several internal functions
+## That will be called by a later funtion
+## so that potentially large matrices that need
+## to be inverted - can be inverted on a separate thread
 makeCacheMatrix <- function(x = matrix()) {
         s <- NULL
         set <- function(y) {

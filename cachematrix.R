@@ -32,14 +32,33 @@
 ## the functions declared.
 ##
 makeCacheMatrix <- function(x = matrix()) {
+        # initialize the s variable - or set it to NULL
+        # if there is a value already there
         s <- NULL
+        
+        # This set function is called when this variable
+        # /object is created.  Stores the original
+        # matrix
         set <- function(y) {
                 x <<- y
                 s <<- NULL
         }
+        
+        # returns the original matrix
         get <- function() x
+        
+        # solves the matrix to get inverted matrix
+        # returns inverted matrix
         setsolve <- function(solve) s <<- solve
+        
+        # returns NULL or previously calculated
+        # inverted matrix
         getsolve <- function() s
+        
+        # the list returned by the original call
+        # creating a list object from this function
+        # assigning the names of internal functions
+        # to functionality of classes
         list(set = set, get = get,
              getsolve = getsolve,
              setsolve = setsolve)        
@@ -66,13 +85,32 @@ makeCacheMatrix <- function(x = matrix()) {
 ## the contents of the s variable.
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
+        
+        ## call input parameter's getsolve function
+        ## if this has been previously called
+        ## inverted x matrix will be returned
         s <- x$getsolve()
+        
+        ## if the getsolve() call returned a value
+        ## return the inverted matrix with a message
         if(!is.null(s)) {
                 message("getting cached data")
                 return(s)
         }
+        
+        ## call input parameter's get function
+        ## getting the original matrix
         data <- x$get()
+        
+        ## calling the solve function which inverts
+        ## the supplied data (a matrix) in to the s
+        ## variable
         s <- solve(data, ...)
+        
+        ## stores the solution so that next time
+        ## you can call getsolve() and get the inverted
+        ## matrix without repeating the solve function
         x$setsolve(s)
-        s
+        
+        s   ## the value returned - inverted matrix
 }
